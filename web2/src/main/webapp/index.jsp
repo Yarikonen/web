@@ -13,9 +13,6 @@
     <link rel="stylesheet" type="text/css" href="style1.css"/>
 
 </head>
-<script src="btnListener.js"></script>
-<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-
 
 <body>
 <div id ="header">
@@ -62,6 +59,9 @@
             <line x1="324.5" y1="546" x2="324.5" y2="420" stroke="#0C8CE9"/>
         </svg>
     </div>
+    <script>
+
+    </script>
     <form action="" onsubmit="onSubmit(); return false;">
         <div id ="x">
             <label>Значение X:</label>
@@ -120,6 +120,9 @@
         %>
     </table>
 </div>
+<script src="btnListener.js"></script>
+<script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+<script src="svgConnector.js">  </script>
 
 
 
