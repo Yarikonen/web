@@ -1,0 +1,35 @@
+package model;
+
+
+
+import java.io.Serializable;
+import java.util.LinkedList;
+
+public class Table implements Serializable {
+    private LinkedList<Row> rows ;
+    public Table(){
+        this.rows= new LinkedList<>();
+    }
+    public String saveTable(){
+        if(rows.size()>22){
+            rows.pollFirst();
+        }
+        StringBuilder table = new StringBuilder("<tr><th>Hit or miss </th>     <th>Execution time [ns]</th>        <th>DateTime</th>        <th>X</th>        <th>Y</th>        <th>R</th> </tr>");
+        for (Row row: rows
+             ) {
+            table.append(row.toString());
+
+        }
+        return(table.toString());
+    }
+    public void setRows(LinkedList<Row> rows){
+        this.rows=rows;
+    }
+    public LinkedList<Row> getRows(){
+        return(rows);
+    }
+    public void addRow(Row row){
+        rows.offerLast(row);
+    }
+
+}
