@@ -7,6 +7,8 @@ import java.util.LinkedList;
 
 public class Table implements Serializable {
     private LinkedList<Row> rows ;
+    private static final String tableHeader ="<tr><th>Hit or miss </th>     <th>Execution time [ns]</th>        <th>DateTime</th>        <th>X</th>        <th>Y</th>        <th>R</th> </tr>";
+
     public Table(){
         this.rows= new LinkedList<>();
     }
@@ -14,7 +16,7 @@ public class Table implements Serializable {
         if(rows.size()>22){
             rows.pollFirst();
         }
-        StringBuilder table = new StringBuilder("<tr><th>Hit or miss </th>     <th>Execution time [ns]</th>        <th>DateTime</th>        <th>X</th>        <th>Y</th>        <th>R</th> </tr>");
+        StringBuilder table = new StringBuilder(tableHeader);
         for (Row row: rows
              ) {
             table.append(row.toString());
@@ -30,6 +32,9 @@ public class Table implements Serializable {
     }
     public void addRow(Row row){
         rows.offerLast(row);
+    }
+    public static String getHeader(){
+        return tableHeader;
     }
 
 }
