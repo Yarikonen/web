@@ -12,7 +12,7 @@ import java.time.ZoneId;
 @WebServlet(name = "AreaCheckServlet", value = "/AreaCheckServlet")
 public class AreaCheckServlet extends HttpServlet {
 
-    private Table table;
+    private static Table table ;
     @Override
     public void init() throws ServletException {
 
@@ -37,7 +37,7 @@ public class AreaCheckServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 
     }
-    public Table getTable() {
+    public static Table getTable() {
         return table;
     }
 
