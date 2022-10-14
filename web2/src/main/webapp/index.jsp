@@ -1,3 +1,6 @@
+<%@ page import="servlets.AreaCheckServlet" %>
+<%@ page import="java.awt.geom.Area" %>
+<%@ page import="model.Table" %>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
@@ -107,7 +110,14 @@
 </div>
 <div id="right" class = "main" >
     <table id ="table" >
-
+        <%
+            if (AreaCheckServlet.getTable() != null) {
+                out.print((AreaCheckServlet.getTable().saveTable()));
+            }
+            else{
+                out.print(Table.getHeader());
+            }
+        %>
     </table>
 </div>
 
