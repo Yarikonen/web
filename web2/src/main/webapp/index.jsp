@@ -10,7 +10,7 @@
     <title>First Lab WEB</title>
     <meta name="author" content="Yaroslav">
     <meta name="description" content="best lab or whatever">
-    <link rel="stylesheet" type="text/css" href="style1.css"/>
+    <link rel="stylesheet" type="text/css" href="style2.css"/>
 
 </head>
 
@@ -57,6 +57,7 @@
             <line x1="323.897" y1="545.146" x2="75.5362" y2="296.785" stroke="#0C8CE9"/>
             <line x1="77" y1="295.5" x2="325" y2="295.5" stroke="#0C8CE9"/>
             <line x1="324.5" y1="546" x2="324.5" y2="420" stroke="#0C8CE9"/>
+
         </svg>
     </div>
     <script>
@@ -120,7 +121,7 @@
         %>
     </table>
 </div>
-<script src="btnListener.js"></script>
+<script src="btnListener2.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
 <script src="svgConnector.js">  </script>
 
