@@ -7,13 +7,10 @@ import javax.servlet.http.*;
 import javax.servlet.annotation.*;
 import java.io.IOException;
 
-import java.util.Arrays;
-import java.util.HashSet;
+
 
 @WebServlet(name = "ControllerServlet", value = "/ControllerServlet")
 public class ControllerServlet extends HttpServlet {
-    private final  HashSet<Double> xArr= new HashSet<>(Arrays.asList(-2.0, -1.5, -1.0, -0.5, 0.0, 0.5 , 1.0,1.5,2.0));
-    private final  HashSet<Double> rArr= new HashSet<>(Arrays.asList(1.0,1.5,2.0,2.5,3.0));
 
 
     @Override
@@ -39,10 +36,10 @@ public class ControllerServlet extends HttpServlet {
     private boolean validate(String x, String y, String r){
 
         try{
-            double xx = Double.parseDouble(x);
+            Double.parseDouble(x);
             double yy=  Double.parseDouble(y);
-            double rr = Double.parseDouble(r);
-            return(xArr.contains(xx) && rArr.contains(rr) && yy<=5 && yy>=-5 );
+            Double.parseDouble(r);
+            return( yy<=5 && yy>=-5 );
         }catch(NumberFormatException exp){
             return false;
 
