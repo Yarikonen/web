@@ -13,8 +13,23 @@ function screenPoint(x,y,r){
     return(pt)
 }
 
-document.getElementById('image1').addEventListener('click', function (event) {
-    var get_R;
+$(document).ready(function (){                                  //redraw onload
+    let xArray = document.getElementsByName("xT");
+    let yArray = document.getElementsByName("yT");
+    let rArray = document.getElementsByName("rT");
+    let r = rArray[rArray.length-1].innerHTML;
+    for (let i = xArray.length-1; i >=0; i--) {
+        if (r===rArray[i].innerHTML){
+            draw(screenPoint(xArray[i].innerHTML,yArray[i].innerHTML,r));
+        }
+        else{
+            break
+        }
+    }
+})
+
+svg.addEventListener('click',function(evt){         //draw onclick
+    let get_R;
     let rRadioButtons = document.getElementsByName("r_v");
     for (let rRadioButton of rRadioButtons) {
         if (rRadioButton.checked) {
