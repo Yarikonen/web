@@ -1,6 +1,7 @@
 var svg = document.querySelector('svg');
 var height = svg.getAttribute("height");
 var width =  svg.getAttribute("width");
+const pixByR = 248
 function graphPoint(evt){
     let pt = svg.createSVGPoint();
     pt.x = evt.clientX; pt.y = evt.clientY;
@@ -8,8 +9,8 @@ function graphPoint(evt){
 }
 function screenPoint(x,y,r){
     let pt = svg.createSVGPoint();
-    pt.x = x*248/r + width/2
-    pt.y = -y*248/r + height/2
+    pt.x = x*pixByR/r + width/2
+    pt.y = -y*pixByR/r + height/2
     return(pt)
 }
 
@@ -39,8 +40,8 @@ svg.addEventListener('click',function(evt){         //draw onclick
     }
     if (!isNaN(parseFloat(get_R))) {
         let loc = graphPoint(evt);
-        let get_X =get_R*(loc.x - width / 2) / 248;
-        let get_Y = get_R*((-loc.y + height / 2)) / 248;
+        let get_X =get_R*(loc.x - width / 2) /pixByR;
+        let get_Y = get_R*((-loc.y + height / 2)) / pixByR;
         $.get("ControllerServlet", { x: get_X , r: get_R, y:get_Y, timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone }).done(function(data){
             document.getElementById("table").innerHTML=data;
         });
