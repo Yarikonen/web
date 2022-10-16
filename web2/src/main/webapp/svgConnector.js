@@ -38,7 +38,23 @@ svg.addEventListener('click',function(evt){         //draw onclick
         }
     }
     if (!isNaN(parseFloat(get_R))) {
-        document.getElementById("image1").innerHTML = event.clientX.toString() + " " + event.clientY.toString() +" "+ document.getElementById("y_v").value;
+        let loc = graphPoint(evt);
+        let get_X =get_R*(loc.x - width / 2) / 248;
+        let get_Y = get_R*((-loc.y + height / 2)) / 248;
+        $.get("ControllerServlet", { x: get_X , r: get_R, y:get_Y, timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone }).done(function(data){
+            document.getElementById("table").innerHTML=data;
+        });
+        draw(loc)
+
     }
+},false);
+var radios = document.getElementsByName("r_v");                                                        //clear image onchange
+for(radio in radios) {
+    radios[radio].onchange = function() {
+
+        document.querySelectorAll(".point").forEach(el=>el.remove());
+
+    }
+}
 
 }, true);
