@@ -57,4 +57,16 @@ for(radio in radios) {
     }
 }
 
-}, true);
+
+function draw(p){                                                                                               //draw method
+    let  point= document.createElementNS('http://www.w3.org/2000/svg','ellipse');
+    point.setAttribute("cx",p.x);
+    point.setAttribute("cy",p.y);
+    point.setAttribute("rx",2);
+    point.setAttribute("ry", 2);
+    point.setAttribute("stroke","white");
+    point.setAttribute("class", "point");
+    $("svg").append(point);
+
+}
+
