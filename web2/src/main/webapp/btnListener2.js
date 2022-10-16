@@ -1,5 +1,4 @@
 var get_X;
-var get_Y;
 var get_R;
 function onSubmit() {
     
@@ -24,6 +23,7 @@ function onSubmit() {
        
         $.get("ControllerServlet", { x: get_X , r: get_R, y:y.value, timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone }).done(function(data){
             document.getElementById("table").innerHTML=data;
+            draw(screenPoint(get_X,y.value,get_R));
         });
         
        
@@ -35,19 +35,10 @@ function validator(y){
     
     if (isNaN(parseFloat(y)) || parseFloat(y)>5.0 || parseFloat(y)<-5.0 || !isFinite(y)) {
         alert("Y must be float from -5 to 5")
-        return(false)
+        return false
 
     }
-    return(true)
+    return true
 
 
 }
-function appendTable(index, ...args){
-    let table=   document.getElementbyTag("table")[index];
-    var row= table.insertRow();
-    args.forEach(element => {let cell = row.insertCell();
-     cell.innerHTML="aboba";
-    });
-
-
- }
