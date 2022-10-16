@@ -13,7 +13,7 @@ public class Table implements Serializable {
         this.rows= new LinkedList<>();
     }
     public String saveTable(){
-        if(rows.size()>22){
+        if(rows.size()>23){
             rows.pollFirst();
         }
         StringBuilder table = new StringBuilder(tableHeader);
