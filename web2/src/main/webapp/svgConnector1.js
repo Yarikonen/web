@@ -13,21 +13,42 @@ function screenPoint(x,y,r){
     pt.y = -y*pixByR/r + height/2
     return(pt)
 }
+function redraw(xArray, yArray, rArray, r) {
 
-$(document).ready(function (){                                  //redraw onload
-    let xArray = document.getElementsByName("xT");
-    let yArray = document.getElementsByName("yT");
-    let rArray = document.getElementsByName("rT");
-    let r = rArray[rArray.length-1].innerHTML;
-    for (let i = xArray.length-1; i >=0; i--) {
-        if (r===rArray[i].innerHTML){
-            draw(screenPoint(xArray[i].innerHTML,yArray[i].innerHTML,r));
-        }
-        else{
+
+    for (let i = xArray.length - 1; i >= 0; i--) {
+        if (r == rArray[i]) {
+            draw(screenPoint(xArray[i], yArray[i], r));
+        } else {
             break
         }
+
+
     }
-})
+}
+$(document).ready(function (){
+    $.get("TableServlet", {"getTable":"true"} ).done(function (data){
+        let xArray = []
+        let yArray = []
+        let rArray = []
+
+        for(let row of data.split("$")){
+            row = row.split(" ");
+            xArray.push(row[0]);
+            yArray.push(row[1]);
+            rArray.push(row[2]);
+
+        }
+        redraw(xArray,yArray,rArray,rArray[rArray.length-1]);
+
+
+
+    })
+
+});
+
+
+
 
 svg.addEventListener('click',function(evt){         //draw onclick
     let get_R;
@@ -50,10 +71,28 @@ svg.addEventListener('click',function(evt){         //draw onclick
     }
 },false);
 var radios = document.getElementsByName("r_v");                                                        //clear image onchange
-for(radio in radios) {
-    radios[radio].onchange = function() {
+for(let radio of radios) {
+    radio.onchange = function() {
+        var radioValue = this.value.toString();
 
         document.querySelectorAll(".point").forEach(el=>el.remove());
+        $.get("TableServlet", {"getTable":"true"} ).done(function (data){
+
+
+            let xArray = []
+            let yArray = []
+            let rArray = []
+
+            for(let row of data.split("$")){
+                row = row.split(" ");
+                xArray.push(row[0]);
+                yArray.push(row[1]);
+                rArray.push(row[2]);
+
+            }
+            redraw(xArray,yArray,rArray,radioValue);
+        })
+
 
     }
 }
