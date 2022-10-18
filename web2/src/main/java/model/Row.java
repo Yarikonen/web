@@ -8,6 +8,10 @@ import java.time.temporal.ChronoUnit;
 public class Row implements Serializable {
     private double x;
     private double y;
+    private double r;
+    private LocalTime birthTime;
+    private boolean booling=false;
+    private long exTime;
     public Row(){
         this.exTime=System.nanoTime();
     }
@@ -30,8 +34,11 @@ public class Row implements Serializable {
     public String toString() {
         return ("<tr><td>" + booling + "</td><td>" + exTime + "</td><td>" + birthTime +  "</td>"
                 + "<td name=xT>" + Math.round(x*1000.0)/1000.0 + "</td>"
-                + "<td name=yT>" + Math.round(y*1000.0)/1000.0 + "</td>"
-                + "<td name=rT>" + r +  "</td></tr>");
+                + "<td class=yT>" + Math.round(y*1000.0)/1000.0 + "</td>"
+                + "<td class=rT>" + r +  "</td></tr>");
+    }
+    public String data(){
+        return("$" + x + " " + y + " " + r);
     }
 
 
@@ -83,10 +90,7 @@ public class Row implements Serializable {
         this.exTime = exTime;
     }
 
-    private double r;
-    private LocalTime birthTime;
-    private boolean booling=false;
-    private long exTime;
+
 
 
 
