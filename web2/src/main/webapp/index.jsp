@@ -1,13 +1,11 @@
-<%@ page import="servlets.AreaCheckServlet" %>
-<%@ page import="java.awt.geom.Area" %>
-<%@ page import="model.Table" %>
+<jsp:useBean id="table" scope="session" class="model.Table"/>
 <%@ page contentType="text/html; charset=UTF-8" pageEncoding="UTF-8" %>
 <!DOCTYPE html>
 <html>
 <head>
 
     <meta charset="utf-8">
-    <title>First Lab WEB</title>
+    <title>Second Lab WEB</title>
     <meta name="author" content="Yaroslav">
     <meta name="description" content="best lab or whatever">
     <link rel="stylesheet" type="text/css" href="style2.css"/>
@@ -16,7 +14,7 @@
 
 <body>
 <div id ="header">
-    <h1 ><text id ="W"></text>Web 1</h1>
+    <h1 ><text id ="W"></text>Web 2</h1>
     <p class="author"> Рудык Ярослав P32111 Вариант 1016</p>
 </div>
 
@@ -66,7 +64,7 @@
     <form action="" onsubmit="onSubmit(); return false;">
         <div id ="x">
             <label>Значение X:</label>
-            <input type="radio" id = x_v1 name="x_v" value="-2" checked>
+            <input type="radio" id = x_v1 name="x_v" value="-2.0" checked>
             <label for="x_v1">-2</label>
             <input type="radio" id="x_v2" name = "x_v" value="-1.5">
             <label for="x_v2">-1.5</label>
@@ -74,7 +72,7 @@
             <label for="x_v3">-1</label>
             <input type="radio" id="x_v4" name = "x_v" value="-0.5">
             <label for="x_v4">-0.5</label>
-            <input type="radio" id="x_v5" name = "x_v" value="0">
+            <input type="radio" id="x_v5" name = "x_v" value="0.0">
             <label for="x_v5">0</label>
             <input type="radio" id="x_v6" name = "x_v" value="0.5">
             <label for="x_v6">0.5</label>
@@ -87,15 +85,15 @@
         </div>
         <div id ="r">
             <label>Значение R:</label>
-            <input type="radio" id = r_v1 name="r_v" value="1" checked>
+            <input type="radio" id = r_v1 name="r_v" value="1.0" checked>
             <label for="r_v1">1</label>
             <input type="radio" id="r_v2" name = "r_v" value="1.5">
             <label for="r_v2">1.5</label>
-            <input type="radio" id="r_v3" name = "r_v" value="2">
-            <label for="x_v3">2</label>
+            <input type="radio" id="r_v3" name = "r_v" value="2.0">
+            <label for="r_v3">2</label>
             <input type="radio" id="r_v4" name = "r_v" value="2.5">
             <label for="r_v4">2.5</label>
-            <input type="radio" id="r_v5" name = "r_v" value="3">
+            <input type="radio" id="r_v5" name = "r_v" value="3.0">
             <label for="r_v5">3</label>
 
         </div>
@@ -111,19 +109,14 @@
 </div>
 <div id="right" class = "main" >
     <table id ="table" >
-        <%
-            if (AreaCheckServlet.getTable() != null) {
-                out.print((AreaCheckServlet.getTable().saveTable()));
-            }
-            else{
-                out.print(Table.getHeader());
-            }
-        %>
+       ${table.saveTable()}
+
+
     </table>
 </div>
 <script src="btnListener2.js"></script>
 <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
-<script src="svgConnector.js">  </script>
+<script src="svgConnector1.js">  </script>
 
 
 
