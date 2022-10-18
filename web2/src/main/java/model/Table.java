@@ -24,6 +24,14 @@ public class Table implements Serializable {
         }
         return(table.toString());
     }
+    public String returnValues(){
+        StringBuilder result= new StringBuilder();
+        for (Row row: rows){
+            result.append(row.data());
+
+        }
+        return(result.toString());
+    }
     public void setRows(LinkedList<Row> rows){
         this.rows=rows;
     }
@@ -31,7 +39,7 @@ public class Table implements Serializable {
         return(rows);
     }
     public void addRow(Row row){
-        rows.offerLast(row);
+        rows.offer(row);
     }
     public static String getHeader(){
         return tableHeader;
