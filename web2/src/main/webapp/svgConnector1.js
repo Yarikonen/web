@@ -27,11 +27,19 @@ function redraw(xArray, yArray, rArray, r) {
     }
 }
 $(document).ready(function (){
-    $.get("TableServlet", {"getTable":"true"} ).done(function (data){
-        let xArray = []
-        let yArray = []
-        let rArray = []
+    $.ajax({
+        url:"TableServlet",
+        type:"GET",
+        data:{"getTable":"true"},
+        headers:{"Authorization": "carrot"}
 
+
+
+    }).done(function (data){
+
+        let xArray = [];
+        let yArray = [];
+        let rArray = [];
         for(let row of data.split("$")){
             row = row.split(" ");
             xArray.push(row[0]);
@@ -39,12 +47,11 @@ $(document).ready(function (){
             rArray.push(row[2]);
 
         }
-        redraw(xArray,yArray,rArray,rArray[rArray.length-1]);
+        if (xArray.length>1){
+            redraw(xArray,yArray,rArray,rArray[rArray.length-1]);
+        }
 
-
-
-    })
-
+});
 });
 
 
@@ -63,10 +70,17 @@ svg.addEventListener('click',function(evt){         //draw onclick
         let loc = graphPoint(evt);
         let get_X =get_R*(loc.x - width / 2) /pixByR;
         let get_Y = get_R*((-loc.y + height / 2)) / pixByR;
-        $.get("ControllerServlet", { x: get_X , r: get_R, y:get_Y, timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone }).done(function(data){
+
+        $.ajax({
+            url:"ControllerServlet",
+            type:"GET",
+            data:{ x: get_X , r: get_R, y:get_Y, timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone },
+            headers:{"Authorization": "carrot"}
+
+        }).done(function(data){
             document.getElementById("table").innerHTML=data;
+            draw(screenPoint(get_X,get_Y, get_R));
         });
-        draw(loc)
 
     }
 },false);
@@ -76,7 +90,15 @@ for(let radio of radios) {
         var radioValue = this.value.toString();
 
         document.querySelectorAll(".point").forEach(el=>el.remove());
-        $.get("TableServlet", {"getTable":"true"} ).done(function (data){
+        $.ajax({
+            url:"TableServlet",
+            type:"GET",
+            data:{"getTable":"true"},
+            headers:{"Authorization": "carrot"}
+
+
+
+        }).done(function (data){
 
 
             let xArray = []

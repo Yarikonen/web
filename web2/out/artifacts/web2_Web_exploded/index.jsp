@@ -11,7 +11,9 @@
     <link rel="stylesheet" type="text/css" href="style2.css"/>
 
 </head>
-
+<%
+    response.addHeader("Authorization", "carrot");
+%>
 <body>
 <div id ="header">
     <h1 ><text id ="W"></text>Web 2</h1>

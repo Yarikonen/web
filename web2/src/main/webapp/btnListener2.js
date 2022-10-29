@@ -20,11 +20,17 @@ function onSubmit() {
                 break;
             }
         }
-       
-        $.get("ControllerServlet", { x: get_X , r: get_R, y:y.value, timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone }).done(function(data){
-            document.getElementById("table").innerHTML=data;
-            draw(screenPoint(get_X,y.value,get_R));
-        });
+            $.ajax({
+                url:"ControllerServlet",
+                type:"GET",
+                data:{ x: get_X , r: get_R, y:y.value, timeZone:Intl.DateTimeFormat().resolvedOptions().timeZone },
+                headers:{"Authorization": "carrot"}
+
+            }).done(function(data){
+                document.getElementById("table").innerHTML=data;
+                draw(screenPoint(get_X,y.value,get_R));
+            });
+
         
        
     } 
