@@ -8,11 +8,10 @@ import java.io.IOException;
 import java.util.Enumeration;
 
 public class AuthFilter implements Filter {
-    FilterConfig filterConfig;
+
     private  String authParam;
     public void init(FilterConfig config) throws ServletException {
-        this.filterConfig=config;
-        authParam =(filterConfig.getInitParameter("authParam"));
+        authParam =(config.getInitParameter("authParam"));
     }
 
     public void destroy() {
@@ -20,14 +19,18 @@ public class AuthFilter implements Filter {
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws ServletException, IOException {
-        HttpServletRequest req= (HttpServletRequest) request;
-        String secret = req.getHeader("Authorization");
-        if (authParam.equals(secret)) {
+        if (request instanceof  HttpServletRequest) {
+            HttpServletRequest req = (HttpServletRequest) request;
+            String secret = req.getHeader("Authorization");
+            if (authParam.equals(secret)) {
                 chain.doFilter(request, response);
-        } else {
-                ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, secret );
+            } else {
+                ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authorization error");
+            }
         }
-
+        else{
+            ((HttpServletResponse) response).sendError(HttpServletResponse.SC_UNAUTHORIZED, "Authorization error");
+        }
 
 
 
