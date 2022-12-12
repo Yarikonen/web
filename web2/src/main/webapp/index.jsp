@@ -16,7 +16,7 @@
 %>
 <body>
 <div id ="header">
-    <h1 ><text id ="W"></text>Web 2</h1>
+    <h1 >Web 2</h1>
     <p class="author"> Рудык Ярослав P32111 Вариант 1016</p>
 </div>
 
@@ -60,9 +60,7 @@
 
         </svg>
     </div>
-    <script>
 
-    </script>
     <form action="" onsubmit="onSubmit(); return false;">
         <div id ="x">
             <label>Значение X:</label>

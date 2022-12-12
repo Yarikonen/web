@@ -7,6 +7,14 @@
     <title>Welcome Page</title>
 </h:head>
 <h:body>
-    <h2>Hello, <h:outputText value="#{user.name}"></h:outputText></h2>
+    <h:form>
+        <h:outputFormat>User</h:outputFormat>
+        <h:inputText ></h:inputText>
+        <h:commandButton id="submit-button" value="Submit" action="response.xhtml"/>
+    </h:form>
+
+
+
+
 </h:body>
 </html>

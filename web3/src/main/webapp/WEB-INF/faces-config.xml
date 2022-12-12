@@ -4,9 +4,29 @@
               xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/javaee
                                   http://xmlns.jcp.org/xml/ns/javaee/web-facesconfig_2_2.xsd">
     <managed-bean>
-        <managed-bean-name>user</managed-bean-name>
-        <managed-bean-class>User</managed-bean-class>
-        <managed-bean-scope>session</managed-bean-scope>
+        <managed-bean-name>row</managed-bean-name>
+        <managed-bean-class>beans.Row</managed-bean-class>
+        <managed-bean-scope>request</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>process</managed-bean-name>
+        <managed-bean-class>beans.ProcessBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>dao</managed-bean-name>
+        <managed-bean-class>sql.RowDAO</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>connection</managed-bean-name>
+        <managed-bean-class>sql.PostgressConnector</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+    </managed-bean>
+    <managed-bean>
+        <managed-bean-name>timeBean</managed-bean-name>
+        <managed-bean-class>beans.TimeBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
   
 </faces-config>
