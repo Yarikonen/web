@@ -28,9 +28,7 @@
 
     <div id="right" class="main">
         <h:dataTable id="table"
-
-
-                     value="#{process.getTable('rows', dao)}" var="row">
+                     value="#{process.getTable()}" var="row">
             <h:column>
                 <f:facet name="header">Hit</f:facet>
                 #{row.hit? "Hit": "Miss"}
@@ -56,10 +54,10 @@
                 #{row.r}
             </h:column>
         </h:dataTable>
-        <h:commandButton action="${process.previous('rows', dao)}" value='←'>
+        <h:commandButton action="${process.previous()}" value='←'>
             <f:ajax render="table"></f:ajax>
         </h:commandButton>
-        <h:commandButton action="${process.next('rows', dao)}" value='→'>
+        <h:commandButton action="${process.next()}" value='→'>
             <f:ajax render="table"></f:ajax>
         </h:commandButton>
 
@@ -100,38 +98,42 @@
 
                 </svg>
             </div>
+
             <h:form id="form">
+                X:
                 <h:commandLink styleClass="xVal" value="-3" action="#{row.setX(-3)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <h:commandLink styleClass="xVal" value="-2" action="#{row.setX(-2)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <h:commandLink styleClass="xVal" value="-1" action="#{row.setX(-1)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <h:commandLink styleClass="xVal" value="0" action="#{row.setX(0)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <h:commandLink styleClass="xVal" value="1" action="#{row.setX(1)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <h:commandLink styleClass="xVal" value="2" action="#{row.setX(2)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <h:commandLink styleClass="xVal" value="3" action="#{row.setX(3)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <h:commandLink styleClass="xVal" value="4" action="#{row.setX(4)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <h:commandLink styleClass="xVal" value="5" action="#{row.setX(5)}">
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:commandLink>
                 <br/>
+                Y:
                 <h:inputText styleClass="y_v" value="#{row.y}">
                     <f:validateDoubleRange minimum="-3" maximum="5"/>
                 </h:inputText>
+
                 <h:selectOneRadio id="r_value" value="#{row.r}">
 
                     <f:selectItem itemValue="1.0" itemLabel="1"/>
@@ -139,11 +141,11 @@
                     <f:selectItem itemValue="3.0" itemLabel="3"/>
                     <f:selectItem itemValue="4.0" itemLabel="4"/>
                     <f:selectItem itemValue="5.0" itemLabel="5"/>
-                    <f:ajax render="output"></f:ajax>
+                    <f:ajax render="table"></f:ajax>
                 </h:selectOneRadio>
 
-                <h:commandButton value="GO" action="#{process.addToBase(row, dao)}">
-                    <f:ajax render="output"></f:ajax>
+                <h:commandButton value="GO" action="#{process.addToBase(row)}">
+                    <f:ajax render="table"></f:ajax>
                 </h:commandButton>
             </h:form>
         </div>
@@ -153,10 +155,12 @@
             <h:inputHidden id="xValue" value="#{row.x}"/>
             <h:inputHidden id="yValue" value="#{row.y}"/>
             <h:inputHidden id="rValue" value="#{row.r}"/>
-            <h:commandButton id="phantomButton" action="#{process.addToBase(row,dao)}" style="visibility: hidden">
+            <h:commandButton id="phantomButton" action="#{process.addToBase(row)}" style="visibility: hidden">
                 <f:ajax execute="hiddenForm" render="table"></f:ajax>
             </h:commandButton>
         </h:form>
+
+
     </div>
     <script src="svgConnector1.js" type="text/javascript"></script>
 

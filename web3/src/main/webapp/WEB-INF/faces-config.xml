@@ -9,15 +9,21 @@
         <managed-bean-scope>request</managed-bean-scope>
     </managed-bean>
     <managed-bean>
-        <managed-bean-name>process</managed-bean-name>
-        <managed-bean-class>beans.ProcessBean</managed-bean-class>
-        <managed-bean-scope>application</managed-bean-scope>
-    </managed-bean>
-    <managed-bean>
         <managed-bean-name>dao</managed-bean-name>
         <managed-bean-class>sql.RowDAO</managed-bean-class>
         <managed-bean-scope>application</managed-bean-scope>
     </managed-bean>
+    <managed-bean>
+        <managed-bean-name>process</managed-bean-name>
+        <managed-bean-class>beans.ProcessBean</managed-bean-class>
+        <managed-bean-scope>application</managed-bean-scope>
+        <managed-property>
+            <property-name>rowHandler</property-name>
+            <property-class>sql.RowDAO</property-class>
+            <value>#{dao}</value>
+        </managed-property>
+    </managed-bean>
+
     <managed-bean>
         <managed-bean-name>connection</managed-bean-name>
         <managed-bean-class>sql.PostgressConnector</managed-bean-class>

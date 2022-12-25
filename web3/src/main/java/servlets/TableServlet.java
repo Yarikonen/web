@@ -17,7 +17,7 @@ public class TableServlet extends HttpServlet {
         ProcessBean processBean = (ProcessBean) getServletContext().getAttribute("process");
         try {
             StringBuilder result= new StringBuilder();
-            for (Row row: processBean.getRows("rows", (RowDAO) getServletContext().getAttribute("dao"))){
+            for (Row row: processBean.getRows()){
                 result.append(row.data());
 
             }
