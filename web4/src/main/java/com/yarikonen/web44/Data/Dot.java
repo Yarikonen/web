@@ -14,6 +14,20 @@ public class Dot {
     private double r;
     private LocalTime birthTime;
 
+    public Dot(Long id, double x, double y, double r, LocalTime birthTime, boolean hit, long exTime) {
+        this.id = id;
+        this.x = x;
+        this.y = y;
+        this.r = r;
+        this.birthTime = birthTime;
+        this.hit = hit;
+        this.exTime = exTime;
+    }
+
+    public Dot() {
+
+    }
+
     public double getX() {
         return x;
     }
