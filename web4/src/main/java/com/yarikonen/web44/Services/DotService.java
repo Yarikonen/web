@@ -7,14 +7,15 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.time.LocalTime;
 import java.util.List;
 import java.util.Optional;
 
 @Service
 public class DotService {
-    DotRepository repository;
+    private final DotRepository repository;
     @Autowired
-    DotService(DotRepository dotRepository){
+    public DotService(DotRepository dotRepository){
         this.repository=dotRepository;
 
     }
@@ -24,7 +25,8 @@ public class DotService {
     }
 
     @LogEntryExit
-    public void addDot(Dot dot){
-        repository.save(dot);
+    public Dot addDot(Dot dot){
+        dot.setBirthTime(LocalTime.now());
+        return(repository.save(dot));
     }
 }

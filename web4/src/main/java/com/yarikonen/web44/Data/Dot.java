@@ -33,4 +33,5 @@ public class Dot {
     private LocalTime birthTime;
     private boolean hit = false;
     private long exTime;
+
 }
