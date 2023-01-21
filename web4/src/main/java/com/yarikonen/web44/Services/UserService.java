@@ -4,6 +4,7 @@ import com.yarikonen.web44.Annotations.LogEntryExit;
 import com.yarikonen.web44.Data.Dot;
 import com.yarikonen.web44.Data.User;
 import com.yarikonen.web44.Repositories.UserRepository;
+import lombok.extern.java.Log;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -20,7 +21,12 @@ public class UserService {
     public User addUser(User user){
         return(userRepository.save(user));
     }
-    public Optional<User> getByLogin(String login){
+
+    @LogEntryExit
+    public boolean existsByLogin(String login) { return userRepository.existsByLogin(login);}
+
+    @LogEntryExit
+    public User getByLogin(String login){
         return(userRepository.findUserByLogin(login));
     }
 }
